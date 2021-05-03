@@ -284,11 +284,6 @@ namespace kino_library
             movieID = 0;
             saveButton.Text = "Save";
             deleteButton.Enabled = false;
-            if (directorsListBox.Items.Count == 0)
-            {
-                titleTextBox.Text = "1";
-            }
-            else titleTextBox.Text = "0";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
