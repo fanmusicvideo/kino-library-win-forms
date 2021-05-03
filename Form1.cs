@@ -231,46 +231,49 @@ namespace kino_library
         }
 
         private void saveButton_Click(object sender, EventArgs e)
-        {
-            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+        {   if (titleTextBox.Text != "" && descriptionTextBox.Text != "" && yearTextBox.Text != "" && genreComboBox.Text != "" && categoryComboBox.Text != "" && ratingComboBox.Text != "" && countryComboBox.Text != "" && actorsListBox.Items.Count != 0 && directorsListBox.Items.Count != 0)
             {
-                mysqlCon.Open();
-                MySqlCommand mySqlCmd = new MySqlCommand("MovieAddOrEdit", mysqlCon);
-                mySqlCmd.CommandType = CommandType.StoredProcedure;
-                mySqlCmd.Parameters.AddWithValue("_id", movieID);
-                mySqlCmd.Parameters.AddWithValue("_title", titleTextBox.Text.Trim());
-                mySqlCmd.Parameters.AddWithValue("_description", descriptionTextBox.Text.Trim());
-                mySqlCmd.Parameters.AddWithValue("_year", yearTextBox.Text.Trim());
-                mySqlCmd.Parameters.AddWithValue("_genre", genreComboBox.Text.Trim());
-                mySqlCmd.Parameters.AddWithValue("_category", categoryComboBox.Text.Trim());
-                mySqlCmd.Parameters.AddWithValue("_rating", ratingComboBox.Text.Trim());
-                mySqlCmd.Parameters.AddWithValue("_country", countryComboBox.Text.Trim());
-                mySqlCmd.ExecuteNonQuery();
-                mysqlCon.Close();
-
-
-                mysqlCon.Open();
-                string movieCountQuery = "select GetCountOfMovies() as count";
-                MySqlCommand mscMovieCount = new MySqlCommand(movieCountQuery, mysqlCon);
-                MySqlDataReader myReaderMovieCount;
-                myReaderMovieCount = mscMovieCount.ExecuteReader();
-                myReaderMovieCount.Read();
-                int movieCount = myReaderMovieCount.GetInt32("count");
-                mysqlCon.Close();
-                foreach (object actor in actorsListBox.SelectedItems)
+                using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
                 {
                     mysqlCon.Open();
-                    MySqlCommand command = new MySqlCommand("AddActorToMovie", mysqlCon);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("_movie_id", movieCount);
-                    command.Parameters.AddWithValue("_name", actor);
-                    command.ExecuteNonQuery();
+                    MySqlCommand mySqlCmd = new MySqlCommand("MovieAddOrEdit", mysqlCon);
+                    mySqlCmd.CommandType = CommandType.StoredProcedure;
+                    mySqlCmd.Parameters.AddWithValue("_id", movieID);
+                    mySqlCmd.Parameters.AddWithValue("_title", titleTextBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_description", descriptionTextBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_year", yearTextBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_genre", genreComboBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_category", categoryComboBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_rating", ratingComboBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_country", countryComboBox.Text.Trim());
+                    mySqlCmd.ExecuteNonQuery();
                     mysqlCon.Close();
+
+
+                    mysqlCon.Open();
+                    string movieCountQuery = "select GetCountOfMovies() as count";
+                    MySqlCommand mscMovieCount = new MySqlCommand(movieCountQuery, mysqlCon);
+                    MySqlDataReader myReaderMovieCount;
+                    myReaderMovieCount = mscMovieCount.ExecuteReader();
+                    myReaderMovieCount.Read();
+                    int movieCount = myReaderMovieCount.GetInt32("count");
+                    mysqlCon.Close();
+                    foreach (object actor in actorsListBox.SelectedItems)
+                    {
+                        mysqlCon.Open();
+                        MySqlCommand command = new MySqlCommand("AddActorToMovie", mysqlCon);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("_movie_id", movieCount);
+                        command.Parameters.AddWithValue("_name", actor);
+                        command.ExecuteNonQuery();
+                        mysqlCon.Close();
+                    }
+                    MessageBox.Show("Submitted Successfully");
+                    Clear();
+                    GridFill();
                 }
-                MessageBox.Show("Submitted Successfully");
-                Clear();
-                GridFill();
             }
+            
         }
 
         void Clear()
@@ -281,6 +284,11 @@ namespace kino_library
             movieID = 0;
             saveButton.Text = "Save";
             deleteButton.Enabled = false;
+            if (directorsListBox.Items.Count == 0)
+            {
+                titleTextBox.Text = "1";
+            }
+            else titleTextBox.Text = "0";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
