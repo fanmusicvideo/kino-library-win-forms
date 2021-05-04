@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySqlConnector;
+using System.IO;
 
 
 namespace kino_library
@@ -17,6 +18,13 @@ namespace kino_library
     {
         string connectionString = @"Server=localhost;Database=kino;Uid=root;Pwd=ilikemyname;";
         int movieID = 0;
+        int genreID = 0;
+        int ratingID = 0;
+        int categoryID = 0;
+        int countryID = 0;
+        int actorID = 0;
+        int directorID = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -123,7 +131,6 @@ namespace kino_library
         {
             if (moviesDataGridView.CurrentRow.Index != -1)
             {
-
                 movieID = Convert.ToInt32(moviesDataGridView.CurrentRow.Cells[0].Value.ToString());
                 saveButton.Text = "Update";
                 deleteButton.Enabled = Enabled;
@@ -133,6 +140,28 @@ namespace kino_library
             }
             using (var connection = new MySqlConnection(connectionString))
             {
+                connection.Open();
+
+                string posterQuery = "select poster from movie where movie.id = " + movieID;
+                MySqlCommand command = new MySqlCommand(posterQuery, connection);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(command);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                if (Convert.IsDBNull(ds.Tables[0].Rows[0]["poster"]))
+                {
+                    posterPictureBox.Image = null;
+                    da.Dispose();
+                }
+                else
+                {
+                    byte[] poster = (byte[])ds.Tables[0].Rows[0]["poster"];
+                    MemoryStream ms = new MemoryStream((byte[])ds.Tables[0].Rows[0]["poster"]);
+                    posterPictureBox.Image = Image.FromStream(ms);
+                    da.Dispose();
+                }
+                
+                connection.Close();
                 connection.Open();
                 string genreQuery = "select * from genre where genre.id = " + moviesDataGridView.CurrentRow.Cells[6].Value.ToString();
                 string categoryQuery = "select * from category where category.id = " + moviesDataGridView.CurrentRow.Cells[7].Value.ToString();
@@ -194,7 +223,6 @@ namespace kino_library
                     directorsListBox.Items.Add(myReaderMovieDirectors.GetString("name").ToString());
                 }
                 connection.Close();
-
             }
         }
 
@@ -236,6 +264,11 @@ namespace kino_library
                 using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
                 {
                     mysqlCon.Open();
+
+                    MemoryStream ms = new MemoryStream();
+                    posterPictureBox.Image.Save(ms, posterPictureBox.Image.RawFormat);
+                    byte[] imgBlob = ms.ToArray();
+
                     MySqlCommand mySqlCmd = new MySqlCommand("MovieAddOrEdit", mysqlCon);
                     mySqlCmd.CommandType = CommandType.StoredProcedure;
                     mySqlCmd.Parameters.AddWithValue("_id", movieID);
@@ -246,6 +279,7 @@ namespace kino_library
                     mySqlCmd.Parameters.AddWithValue("_category", categoryComboBox.Text.Trim());
                     mySqlCmd.Parameters.AddWithValue("_rating", ratingComboBox.Text.Trim());
                     mySqlCmd.Parameters.AddWithValue("_country", countryComboBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_img", imgBlob);
                     mySqlCmd.ExecuteNonQuery();
                     mysqlCon.Close();
 
@@ -271,7 +305,12 @@ namespace kino_library
                     MessageBox.Show("Submitted Successfully");
                     Clear();
                     GridFill();
+
                 }
+            }
+            else
+            {
+                MessageBox.Show("Some fields are empty");
             }
             
         }
@@ -282,8 +321,19 @@ namespace kino_library
             directorsListBox.Items.Clear();
             titleTextBox.Text = yearTextBox.Text = countryComboBox.Text = genreComboBox.Text = categoryComboBox.Text = ratingComboBox.Text = descriptionTextBox.Text = "";
             movieID = 0;
+            genreID = 0;
+            ratingID = 0;
+            categoryID = 0;
+            countryID = 0;
+            actorID = 0;
+            directorID = 0;
             saveButton.Text = "Save";
             deleteButton.Enabled = false;
+            posterPictureBox.Image = null;
+            addActorBioTextBox.Text = "";
+            addActorNameTextBox.Text = "";
+            addDirectorBioTextBox.Text = "";
+            addDirectorNamTextBox.Text = "";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -305,6 +355,97 @@ namespace kino_library
                 GridFill();
                 mysqlCon.Close();
             }
+        }
+
+        private void changePosterButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    posterPictureBox.Image = new Bitmap(ofd.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Error");
+                }
+            }
+        }
+
+        private void addGenreButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void actorsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actorsListBox.SelectedItems.Count == 1)
+            {
+                string selectedActor = actorsListBox.SelectedItem.ToString();
+                addActorNameTextBox.Text = selectedActor;
+                using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+                {
+                    mysqlCon.Open();
+                    string actorsBioQuery = "select id, bio from actor where actor.name = '" + selectedActor + "'";
+                    MySqlCommand mscActorBio = new MySqlCommand(actorsBioQuery, mysqlCon);
+                    MySqlDataReader myReaderActorBio;
+                    myReaderActorBio = mscActorBio.ExecuteReader();
+                    myReaderActorBio.Read();
+                    string actorsBio = myReaderActorBio.GetString("bio");
+                    addActorBioTextBox.Text = actorsBio;
+                    int actor_id = myReaderActorBio.GetInt32("id");
+                    actorID = actor_id;
+                }
+                
+
+            }
+
+        }
+
+        private void addActorButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                if (addActorNameTextBox.Text != "" && addActorBioTextBox.Text != "")
+                {
+                    mysqlCon.Open();
+                    MySqlCommand mySqlCmd = new MySqlCommand("ActorAddOrEdit", mysqlCon);
+                    mySqlCmd.CommandType = CommandType.StoredProcedure;
+                    mySqlCmd.Parameters.AddWithValue("_id", actorID);
+                    mySqlCmd.Parameters.AddWithValue("_name", addActorNameTextBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_bio", addActorBioTextBox.Text.Trim());
+                    mySqlCmd.ExecuteNonQuery();
+                    mysqlCon.Close();
+                    MessageBox.Show("Submitted Successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Some fields are empty");
+                }
+                addActorBioTextBox.Text = "";
+                addActorNameTextBox.Text = "";
+                
+            }
+        }
+
+        private void deleteActorButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlCmd = new MySqlCommand("DeleteActorById", mysqlCon);
+                mySqlCmd.CommandType = CommandType.StoredProcedure;
+                mySqlCmd.Parameters.AddWithValue("_id", actorID);
+                mySqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Deleted Successfully");
+                addActorBioTextBox.Text = "";
+                addActorNameTextBox.Text = "";
+                mysqlCon.Close();
+                actorsListBox.Items.Clear();
+            }
+
         }
     }
 }
