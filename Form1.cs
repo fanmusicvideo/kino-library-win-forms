@@ -334,6 +334,11 @@ namespace kino_library
             addActorNameTextBox.Text = "";
             addDirectorBioTextBox.Text = "";
             addDirectorNamTextBox.Text = "";
+            addGenreTextBox.Text = "";
+            addRatingTextBox.Text = "";
+            addCountryTextBox.Text = "";
+            addCategoryTextBox.Text = "";
+
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -374,11 +379,6 @@ namespace kino_library
             }
         }
 
-        private void addGenreButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void actorsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (actorsListBox.SelectedItems.Count == 1)
@@ -398,7 +398,6 @@ namespace kino_library
                     int actor_id = myReaderActorBio.GetInt32("id");
                     actorID = actor_id;
                 }
-                
 
             }
 
@@ -419,14 +418,14 @@ namespace kino_library
                     mySqlCmd.ExecuteNonQuery();
                     mysqlCon.Close();
                     MessageBox.Show("Submitted Successfully");
+                    actorsListBox.Items.Clear();
                 }
                 else
                 {
                     MessageBox.Show("Some fields are empty");
                 }
                 addActorBioTextBox.Text = "";
-                addActorNameTextBox.Text = "";
-                
+                addActorNameTextBox.Text = ""; 
             }
         }
 
@@ -445,7 +444,152 @@ namespace kino_library
                 mysqlCon.Close();
                 actorsListBox.Items.Clear();
             }
+        }
 
+        private void directorsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (directorsListBox.SelectedItems.Count == 1)
+            {
+                string selectedDirector = directorsListBox.SelectedItem.ToString();
+                addDirectorNamTextBox.Text = selectedDirector;
+                using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+                {
+                    mysqlCon.Open();
+                    string directorsBioQuery = "select id, bio from director where director.name = '" + selectedDirector + "'";
+                    MySqlCommand mscDirectorBio = new MySqlCommand(directorsBioQuery, mysqlCon);
+                    MySqlDataReader myReaderDirectorBio;
+                    myReaderDirectorBio = mscDirectorBio.ExecuteReader();
+                    myReaderDirectorBio.Read();
+                    string directorsBio = myReaderDirectorBio.GetString("bio");
+                    addDirectorBioTextBox.Text = directorsBio;
+                    int director_id = myReaderDirectorBio.GetInt32("id");
+                    directorID = director_id;
+                }
+            }
+        }
+
+        private void addDirectorButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                if (addDirectorNamTextBox.Text != "" && addDirectorBioTextBox.Text != "")
+                {
+                    mysqlCon.Open();
+                    MySqlCommand mySqlCmd = new MySqlCommand("DirectorAddOrEdit", mysqlCon);
+                    mySqlCmd.CommandType = CommandType.StoredProcedure;
+                    mySqlCmd.Parameters.AddWithValue("_id", directorID);
+                    mySqlCmd.Parameters.AddWithValue("_name", addDirectorNamTextBox.Text.Trim());
+                    mySqlCmd.Parameters.AddWithValue("_bio", addDirectorBioTextBox.Text.Trim());
+                    mySqlCmd.ExecuteNonQuery();
+                    mysqlCon.Close();
+                    MessageBox.Show("Submitted Successfully");
+                    directorsListBox.Items.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Some fields are empty");
+                }
+                addDirectorBioTextBox.Text = "";
+                addDirectorNamTextBox.Text = "";
+            }
+        }
+
+        private void deleteDirectorButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlCmd = new MySqlCommand("DeleteDirectorById", mysqlCon);
+                mySqlCmd.CommandType = CommandType.StoredProcedure;
+                mySqlCmd.Parameters.AddWithValue("_id", directorID);
+                mySqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Deleted Successfully");
+                addDirectorBioTextBox.Text = "";
+                addDirectorNamTextBox.Text = "";
+                mysqlCon.Close();
+                directorsListBox.Items.Clear();
+            }
+        }
+
+        private void addGenreButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                if (addGenreTextBox.Text != "")
+                {
+                    mysqlCon.Open();
+                    MySqlCommand mySqlCmd = new MySqlCommand("GenreAddOrEdit", mysqlCon);
+                    mySqlCmd.CommandType = CommandType.StoredProcedure;
+                    mySqlCmd.Parameters.AddWithValue("_id", genreID);
+                    mySqlCmd.Parameters.AddWithValue("_name", addGenreTextBox.Text.Trim());
+                    mySqlCmd.ExecuteNonQuery();
+                    mysqlCon.Close();
+                    MessageBox.Show("Submitted Successfully");
+                    genreComboBox.Text = "";
+                    addGenreTextBox.Text = "";
+                    genreComboBox.Items.Clear();
+                    mysqlCon.Open();
+                    string genreQuery = "select * from genre";
+                    MySqlCommand mscGenre = new MySqlCommand(genreQuery, mysqlCon);
+                    MySqlDataReader myReaderGenre;
+                    myReaderGenre = mscGenre.ExecuteReader();
+                    while (myReaderGenre.Read())
+                    {
+                        genreComboBox.Items.Add(myReaderGenre.GetString("name"));
+                    }
+                    mysqlCon.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Some fields are empty");
+                }
+                addGenreTextBox.Text = "";
+            }
+        }
+
+        private void deleteGenreButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlCmd = new MySqlCommand("DeleteGenreById", mysqlCon);
+                mySqlCmd.CommandType = CommandType.StoredProcedure;
+                mySqlCmd.Parameters.AddWithValue("_id", genreID);
+                mySqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Deleted Successfully");
+                addGenreTextBox.Text = "";
+                mysqlCon.Close();
+                genreComboBox.Text = "";
+                addGenreTextBox.Text = "";
+                genreComboBox.Items.Clear();
+                mysqlCon.Open();
+                string genreQuery = "select * from genre";
+                MySqlCommand mscGenre = new MySqlCommand(genreQuery, mysqlCon);
+                MySqlDataReader myReaderGenre;
+                myReaderGenre = mscGenre.ExecuteReader();
+                while (myReaderGenre.Read())
+                {
+                    genreComboBox.Items.Add(myReaderGenre.GetString("name"));
+                }
+                mysqlCon.Close();
+            }
+        }
+
+        private void genreComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedGenre = genreComboBox.SelectedItem.ToString();
+            addGenreTextBox.Text = selectedGenre;
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                string genreBioQuery = "select id from genre where genre.name = '" + selectedGenre + "'";
+                MySqlCommand mscGenre = new MySqlCommand(genreBioQuery, mysqlCon);
+                MySqlDataReader myReaderGenre;
+                myReaderGenre = mscGenre.ExecuteReader();
+                myReaderGenre.Read();
+                int genre_id = myReaderGenre.GetInt32("id");
+                genreID = genre_id;
+            }
         }
     }
 }

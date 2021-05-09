@@ -74,6 +74,14 @@ namespace kino_library
             this.directorsNameLabel = new System.Windows.Forms.Label();
             this.actorsBioLabel = new System.Windows.Forms.Label();
             this.directorsBioLabel = new System.Windows.Forms.Label();
+            this.genreNamelabel = new System.Windows.Forms.Label();
+            this.addGenreTextBox = new System.Windows.Forms.TextBox();
+            this.categoryNameLabel = new System.Windows.Forms.Label();
+            this.addCategoryTextBox = new System.Windows.Forms.TextBox();
+            this.countryNameLabel = new System.Windows.Forms.Label();
+            this.addCountryTextBox = new System.Windows.Forms.TextBox();
+            this.ratingNameLabel = new System.Windows.Forms.Label();
+            this.addRatingTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.posterPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +90,7 @@ namespace kino_library
             // 
             this.addGenreButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.addGenreButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addGenreButton.Location = new System.Drawing.Point(12, 386);
+            this.addGenreButton.Location = new System.Drawing.Point(12, 445);
             this.addGenreButton.Name = "addGenreButton";
             this.addGenreButton.Size = new System.Drawing.Size(100, 29);
             this.addGenreButton.TabIndex = 77;
@@ -143,6 +151,7 @@ namespace kino_library
             this.directorsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.directorsListBox.Size = new System.Drawing.Size(138, 79);
             this.directorsListBox.TabIndex = 72;
+            this.directorsListBox.SelectedIndexChanged += new System.EventHandler(this.directorsListBox_SelectedIndexChanged);
             // 
             // directorsLabel
             // 
@@ -165,7 +174,7 @@ namespace kino_library
             // countryComboBox
             // 
             this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(263, 357);
+            this.countryComboBox.Location = new System.Drawing.Point(263, 363);
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(100, 23);
             this.countryComboBox.TabIndex = 69;
@@ -173,7 +182,7 @@ namespace kino_library
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(263, 339);
+            this.countryLabel.Location = new System.Drawing.Point(263, 345);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(53, 15);
             this.countryLabel.TabIndex = 68;
@@ -182,7 +191,7 @@ namespace kino_library
             // ratingComboBox
             // 
             this.ratingComboBox.FormattingEnabled = true;
-            this.ratingComboBox.Location = new System.Drawing.Point(387, 357);
+            this.ratingComboBox.Location = new System.Drawing.Point(387, 363);
             this.ratingComboBox.Name = "ratingComboBox";
             this.ratingComboBox.Size = new System.Drawing.Size(100, 23);
             this.ratingComboBox.TabIndex = 67;
@@ -190,7 +199,7 @@ namespace kino_library
             // ratingLabel
             // 
             this.ratingLabel.AutoSize = true;
-            this.ratingLabel.Location = new System.Drawing.Point(387, 339);
+            this.ratingLabel.Location = new System.Drawing.Point(387, 345);
             this.ratingLabel.Name = "ratingLabel";
             this.ratingLabel.Size = new System.Drawing.Size(44, 15);
             this.ratingLabel.TabIndex = 66;
@@ -199,7 +208,7 @@ namespace kino_library
             // categoryComboBox
             // 
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(138, 357);
+            this.categoryComboBox.Location = new System.Drawing.Point(138, 363);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(100, 23);
             this.categoryComboBox.TabIndex = 65;
@@ -207,7 +216,7 @@ namespace kino_library
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(138, 339);
+            this.categoryLabel.Location = new System.Drawing.Point(138, 345);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(58, 15);
             this.categoryLabel.TabIndex = 64;
@@ -216,15 +225,16 @@ namespace kino_library
             // genreComboBox
             // 
             this.genreComboBox.FormattingEnabled = true;
-            this.genreComboBox.Location = new System.Drawing.Point(12, 357);
+            this.genreComboBox.Location = new System.Drawing.Point(12, 363);
             this.genreComboBox.Name = "genreComboBox";
             this.genreComboBox.Size = new System.Drawing.Size(100, 23);
             this.genreComboBox.TabIndex = 63;
+            this.genreComboBox.SelectedIndexChanged += new System.EventHandler(this.genreComboBox_SelectedIndexChanged);
             // 
             // genreLabel
             // 
             this.genreLabel.AutoSize = true;
-            this.genreLabel.Location = new System.Drawing.Point(12, 339);
+            this.genreLabel.Location = new System.Drawing.Point(12, 345);
             this.genreLabel.Name = "genreLabel";
             this.genreLabel.Size = new System.Drawing.Size(41, 15);
             this.genreLabel.TabIndex = 62;
@@ -331,7 +341,7 @@ namespace kino_library
             // 
             this.addCategoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.addCategoryButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addCategoryButton.Location = new System.Drawing.Point(138, 386);
+            this.addCategoryButton.Location = new System.Drawing.Point(138, 445);
             this.addCategoryButton.Name = "addCategoryButton";
             this.addCategoryButton.Size = new System.Drawing.Size(100, 29);
             this.addCategoryButton.TabIndex = 81;
@@ -342,7 +352,7 @@ namespace kino_library
             // 
             this.addCountrybutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.addCountrybutton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addCountrybutton.Location = new System.Drawing.Point(263, 386);
+            this.addCountrybutton.Location = new System.Drawing.Point(263, 445);
             this.addCountrybutton.Name = "addCountrybutton";
             this.addCountrybutton.Size = new System.Drawing.Size(100, 29);
             this.addCountrybutton.TabIndex = 83;
@@ -353,7 +363,7 @@ namespace kino_library
             // 
             this.addRatingbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.addRatingbutton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addRatingbutton.Location = new System.Drawing.Point(387, 386);
+            this.addRatingbutton.Location = new System.Drawing.Point(387, 445);
             this.addRatingbutton.Name = "addRatingbutton";
             this.addRatingbutton.Size = new System.Drawing.Size(100, 29);
             this.addRatingbutton.TabIndex = 88;
@@ -382,6 +392,7 @@ namespace kino_library
             this.addDirectorButton.TabIndex = 90;
             this.addDirectorButton.Text = "+";
             this.addDirectorButton.UseVisualStyleBackColor = false;
+            this.addDirectorButton.Click += new System.EventHandler(this.addDirectorButton_Click);
             // 
             // addActorNameTextBox
             // 
@@ -421,7 +432,7 @@ namespace kino_library
             // 
             this.deleteRatingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.deleteRatingButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteRatingButton.Location = new System.Drawing.Point(387, 421);
+            this.deleteRatingButton.Location = new System.Drawing.Point(387, 480);
             this.deleteRatingButton.Name = "deleteRatingButton";
             this.deleteRatingButton.Size = new System.Drawing.Size(100, 29);
             this.deleteRatingButton.TabIndex = 95;
@@ -432,7 +443,7 @@ namespace kino_library
             // 
             this.deleteCountryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.deleteCountryButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteCountryButton.Location = new System.Drawing.Point(263, 421);
+            this.deleteCountryButton.Location = new System.Drawing.Point(263, 480);
             this.deleteCountryButton.Name = "deleteCountryButton";
             this.deleteCountryButton.Size = new System.Drawing.Size(100, 29);
             this.deleteCountryButton.TabIndex = 96;
@@ -443,7 +454,7 @@ namespace kino_library
             // 
             this.deleteCategoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.deleteCategoryButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteCategoryButton.Location = new System.Drawing.Point(138, 421);
+            this.deleteCategoryButton.Location = new System.Drawing.Point(138, 480);
             this.deleteCategoryButton.Name = "deleteCategoryButton";
             this.deleteCategoryButton.Size = new System.Drawing.Size(100, 29);
             this.deleteCategoryButton.TabIndex = 97;
@@ -454,12 +465,13 @@ namespace kino_library
             // 
             this.deleteGenreButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.deleteGenreButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteGenreButton.Location = new System.Drawing.Point(12, 421);
+            this.deleteGenreButton.Location = new System.Drawing.Point(12, 480);
             this.deleteGenreButton.Name = "deleteGenreButton";
             this.deleteGenreButton.Size = new System.Drawing.Size(100, 29);
             this.deleteGenreButton.TabIndex = 98;
             this.deleteGenreButton.Text = "-";
             this.deleteGenreButton.UseVisualStyleBackColor = false;
+            this.deleteGenreButton.Click += new System.EventHandler(this.deleteGenreButton_Click);
             // 
             // deleteActorButton
             // 
@@ -483,6 +495,7 @@ namespace kino_library
             this.deleteDirectorButton.TabIndex = 100;
             this.deleteDirectorButton.Text = "-";
             this.deleteDirectorButton.UseVisualStyleBackColor = false;
+            this.deleteDirectorButton.Click += new System.EventHandler(this.deleteDirectorButton_Click);
             // 
             // actorsNameLabel
             // 
@@ -520,11 +533,87 @@ namespace kino_library
             this.directorsBioLabel.TabIndex = 104;
             this.directorsBioLabel.Text = "Directors bio:";
             // 
+            // genreNamelabel
+            // 
+            this.genreNamelabel.AutoSize = true;
+            this.genreNamelabel.Location = new System.Drawing.Point(12, 398);
+            this.genreNamelabel.Name = "genreNamelabel";
+            this.genreNamelabel.Size = new System.Drawing.Size(74, 15);
+            this.genreNamelabel.TabIndex = 106;
+            this.genreNamelabel.Text = "Genre name:";
+            // 
+            // addGenreTextBox
+            // 
+            this.addGenreTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.addGenreTextBox.Location = new System.Drawing.Point(12, 416);
+            this.addGenreTextBox.Name = "addGenreTextBox";
+            this.addGenreTextBox.Size = new System.Drawing.Size(100, 23);
+            this.addGenreTextBox.TabIndex = 105;
+            // 
+            // categoryNameLabel
+            // 
+            this.categoryNameLabel.AutoSize = true;
+            this.categoryNameLabel.Location = new System.Drawing.Point(138, 398);
+            this.categoryNameLabel.Name = "categoryNameLabel";
+            this.categoryNameLabel.Size = new System.Drawing.Size(91, 15);
+            this.categoryNameLabel.TabIndex = 108;
+            this.categoryNameLabel.Text = "Category name:";
+            // 
+            // addCategoryTextBox
+            // 
+            this.addCategoryTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.addCategoryTextBox.Location = new System.Drawing.Point(138, 416);
+            this.addCategoryTextBox.Name = "addCategoryTextBox";
+            this.addCategoryTextBox.Size = new System.Drawing.Size(100, 23);
+            this.addCategoryTextBox.TabIndex = 107;
+            // 
+            // countryNameLabel
+            // 
+            this.countryNameLabel.AutoSize = true;
+            this.countryNameLabel.Location = new System.Drawing.Point(263, 398);
+            this.countryNameLabel.Name = "countryNameLabel";
+            this.countryNameLabel.Size = new System.Drawing.Size(86, 15);
+            this.countryNameLabel.TabIndex = 110;
+            this.countryNameLabel.Text = "Country name:";
+            // 
+            // addCountryTextBox
+            // 
+            this.addCountryTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.addCountryTextBox.Location = new System.Drawing.Point(263, 416);
+            this.addCountryTextBox.Name = "addCountryTextBox";
+            this.addCountryTextBox.Size = new System.Drawing.Size(100, 23);
+            this.addCountryTextBox.TabIndex = 109;
+            // 
+            // ratingNameLabel
+            // 
+            this.ratingNameLabel.AutoSize = true;
+            this.ratingNameLabel.Location = new System.Drawing.Point(387, 398);
+            this.ratingNameLabel.Name = "ratingNameLabel";
+            this.ratingNameLabel.Size = new System.Drawing.Size(77, 15);
+            this.ratingNameLabel.TabIndex = 112;
+            this.ratingNameLabel.Text = "Rating name:";
+            // 
+            // addRatingTextBox
+            // 
+            this.addRatingTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.addRatingTextBox.Location = new System.Drawing.Point(387, 416);
+            this.addRatingTextBox.Name = "addRatingTextBox";
+            this.addRatingTextBox.Size = new System.Drawing.Size(100, 23);
+            this.addRatingTextBox.TabIndex = 111;
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1381, 522);
+            this.Controls.Add(this.ratingNameLabel);
+            this.Controls.Add(this.addRatingTextBox);
+            this.Controls.Add(this.countryNameLabel);
+            this.Controls.Add(this.addCountryTextBox);
+            this.Controls.Add(this.categoryNameLabel);
+            this.Controls.Add(this.addCategoryTextBox);
+            this.Controls.Add(this.genreNamelabel);
+            this.Controls.Add(this.addGenreTextBox);
             this.Controls.Add(this.directorsBioLabel);
             this.Controls.Add(this.actorsBioLabel);
             this.Controls.Add(this.directorsNameLabel);
@@ -630,6 +719,15 @@ namespace kino_library
         private System.Windows.Forms.Label directorsNameLabel;
         private System.Windows.Forms.Label actorsBioLabel;
         private System.Windows.Forms.Label directorsBioLabel;
+        private System.Windows.Forms.Label genreNamelabel;
+        private System.Windows.Forms.TextBox genreTextBox;
+        private System.Windows.Forms.TextBox addGenreTextBox;
+        private System.Windows.Forms.Label categoryNameLabel;
+        private System.Windows.Forms.TextBox addCategoryTextBox;
+        private System.Windows.Forms.Label countryNameLabel;
+        private System.Windows.Forms.TextBox addCountryTextBox;
+        private System.Windows.Forms.Label ratingNameLabel;
+        private System.Windows.Forms.TextBox addRatingTextBox;
     }
 }
 
