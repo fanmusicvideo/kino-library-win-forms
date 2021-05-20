@@ -302,6 +302,16 @@ namespace kino_library
                         command.ExecuteNonQuery();
                         mysqlCon.Close();
                     }
+                    foreach (object director in directorsListBox.SelectedItems)
+                    {
+                        mysqlCon.Open();
+                        MySqlCommand command = new MySqlCommand("AddDirectorToMovie", mysqlCon);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("_movie_id", movieCount);
+                        command.Parameters.AddWithValue("_name", director);
+                        command.ExecuteNonQuery();
+                        mysqlCon.Close();
+                    }
                     MessageBox.Show("Submitted Successfully");
                     Clear();
                     GridFill();
@@ -589,6 +599,248 @@ namespace kino_library
                 myReaderGenre.Read();
                 int genre_id = myReaderGenre.GetInt32("id");
                 genreID = genre_id;
+            }
+        }
+        private void addCategoryButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                if (addCategoryTextBox.Text != "")
+                {
+                    mysqlCon.Open();
+                    MySqlCommand mySqlCmd = new MySqlCommand("CategoryAddOrEdit", mysqlCon);
+                    mySqlCmd.CommandType = CommandType.StoredProcedure;
+                    mySqlCmd.Parameters.AddWithValue("_id", categoryID);
+                    mySqlCmd.Parameters.AddWithValue("_name", addCategoryTextBox.Text.Trim());
+                    mySqlCmd.ExecuteNonQuery();
+                    mysqlCon.Close();
+                    MessageBox.Show("Submitted Successfully");
+                    categoryComboBox.Text = "";
+                    addCategoryTextBox.Text = "";
+                    categoryComboBox.Items.Clear();
+                    mysqlCon.Open();
+                    string categoryQuery = "select * from category";
+                    MySqlCommand mscCategory = new MySqlCommand(categoryQuery, mysqlCon);
+                    MySqlDataReader myReaderCategory;
+                    myReaderCategory = mscCategory.ExecuteReader();
+                    while (myReaderCategory.Read())
+                    {
+                        categoryComboBox.Items.Add(myReaderCategory.GetString("name"));
+                    }
+                    mysqlCon.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Some fields are empty");
+                }
+                addCategoryTextBox.Text = "";
+            }
+        }
+
+        private void deleteCategoryButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlCmd = new MySqlCommand("DeleteCategoryById", mysqlCon);
+                mySqlCmd.CommandType = CommandType.StoredProcedure;
+                mySqlCmd.Parameters.AddWithValue("_id", categoryID);
+                mySqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Deleted Successfully");
+                addCategoryTextBox.Text = "";
+                mysqlCon.Close();
+                categoryComboBox.Text = "";
+                addCategoryTextBox.Text = "";
+                categoryComboBox.Items.Clear();
+                mysqlCon.Open();
+                string categoryQuery = "select * from category";
+                MySqlCommand mscCategory = new MySqlCommand(categoryQuery, mysqlCon);
+                MySqlDataReader myReaderCategory;
+                myReaderCategory = mscCategory.ExecuteReader();
+                while (myReaderCategory.Read())
+                {
+                    categoryComboBox.Items.Add(myReaderCategory.GetString("name"));
+                }
+                mysqlCon.Close();
+            }
+        }
+
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedCategory = categoryComboBox.SelectedItem.ToString();
+            addCategoryTextBox.Text = selectedCategory;
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                string categoryQuery = "select id from category where category.name = '" + selectedCategory + "'";
+                MySqlCommand mscCategory = new MySqlCommand(categoryQuery, mysqlCon);
+                MySqlDataReader myReaderCategory;
+                myReaderCategory = mscCategory.ExecuteReader();
+                myReaderCategory.Read();
+                int category_id = myReaderCategory.GetInt32("id");
+                categoryID = category_id;
+            }
+        }
+
+        private void addCountryButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                if (addCountryTextBox.Text != "")
+                {
+                    mysqlCon.Open();
+                    MySqlCommand mySqlCmd = new MySqlCommand("CountryAddOrEdit", mysqlCon);
+                    mySqlCmd.CommandType = CommandType.StoredProcedure;
+                    mySqlCmd.Parameters.AddWithValue("_id", countryID);
+                    mySqlCmd.Parameters.AddWithValue("_name", addCountryTextBox.Text.Trim());
+                    mySqlCmd.ExecuteNonQuery();
+                    mysqlCon.Close();
+                    MessageBox.Show("Submitted Successfully");
+                    countryComboBox.Text = "";
+                    addCountryTextBox.Text = "";
+                    countryComboBox.Items.Clear();
+                    mysqlCon.Open();
+                    string countryQuery = "select * from country";
+                    MySqlCommand mscCountry = new MySqlCommand(countryQuery, mysqlCon);
+                    MySqlDataReader myReaderCountry;
+                    myReaderCountry = mscCountry.ExecuteReader();
+                    while (myReaderCountry.Read())
+                    {
+                        countryComboBox.Items.Add(myReaderCountry.GetString("name"));
+                    }
+                    mysqlCon.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Some fields are empty");
+                }
+                addCountryTextBox.Text = "";
+            }
+        }
+
+        private void deleteCountryButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlCmd = new MySqlCommand("DeleteCountryById", mysqlCon);
+                mySqlCmd.CommandType = CommandType.StoredProcedure;
+                mySqlCmd.Parameters.AddWithValue("_id", countryID);
+                mySqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Deleted Successfully");
+                addCountryTextBox.Text = "";
+                mysqlCon.Close();
+                countryComboBox.Text = "";
+                addCountryTextBox.Text = "";
+                countryComboBox.Items.Clear();
+                mysqlCon.Open();
+                string countryQuery = "select * from country";
+                MySqlCommand mscCountry = new MySqlCommand(countryQuery, mysqlCon);
+                MySqlDataReader myReaderCountry;
+                myReaderCountry = mscCountry.ExecuteReader();
+                while (myReaderCountry.Read())
+                {
+                    countryComboBox.Items.Add(myReaderCountry.GetString("name"));
+                }
+                mysqlCon.Close();
+            }
+        }
+
+        private void countryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedCountry = countryComboBox.SelectedItem.ToString();
+            addCountryTextBox.Text = selectedCountry;
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                string countryQuery = "select id from country where country.name = '" + selectedCountry + "'";
+                MySqlCommand mscCountry = new MySqlCommand(countryQuery, mysqlCon);
+                MySqlDataReader myReaderCountry;
+                myReaderCountry = mscCountry.ExecuteReader();
+                myReaderCountry.Read();
+                int country_id = myReaderCountry.GetInt32("id");
+                countryID = country_id;
+            }
+        }
+
+        private void addRatingButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                if (addRatingTextBox.Text != "")
+                {
+                    mysqlCon.Open();
+                    MySqlCommand mySqlCmd = new MySqlCommand("RatingAddOrEdit", mysqlCon);
+                    mySqlCmd.CommandType = CommandType.StoredProcedure;
+                    mySqlCmd.Parameters.AddWithValue("_id", ratingID);
+                    mySqlCmd.Parameters.AddWithValue("_name", addRatingTextBox.Text.Trim());
+                    mySqlCmd.ExecuteNonQuery();
+                    mysqlCon.Close();
+                    MessageBox.Show("Submitted Successfully");
+                    ratingComboBox.Text = "";
+                    addRatingTextBox.Text = "";
+                    ratingComboBox.Items.Clear();
+                    mysqlCon.Open();
+                    string ratingQuery = "select * from rating";
+                    MySqlCommand mscRating = new MySqlCommand(ratingQuery, mysqlCon);
+                    MySqlDataReader myReaderRating;
+                    myReaderRating = mscRating.ExecuteReader();
+                    while (myReaderRating.Read())
+                    {
+                        ratingComboBox.Items.Add(myReaderRating.GetString("name"));
+                    }
+                    mysqlCon.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Some fields are empty");
+                }
+                addRatingTextBox.Text = "";
+            }
+        }
+
+        private void deleteRatingButton_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                MySqlCommand mySqlCmd = new MySqlCommand("DeleteRatingById", mysqlCon);
+                mySqlCmd.CommandType = CommandType.StoredProcedure;
+                mySqlCmd.Parameters.AddWithValue("_id", ratingID);
+                mySqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Deleted Successfully");
+                addRatingTextBox.Text = "";
+                mysqlCon.Close();
+                ratingComboBox.Text = "";
+                addRatingTextBox.Text = "";
+                ratingComboBox.Items.Clear();
+                mysqlCon.Open();
+                string ratingQuery = "select * from rating";
+                MySqlCommand mscRating = new MySqlCommand(ratingQuery, mysqlCon);
+                MySqlDataReader myReaderRating;
+                myReaderRating = mscRating.ExecuteReader();
+                while (myReaderRating.Read())
+                {
+                    ratingComboBox.Items.Add(myReaderRating.GetString("name"));
+                }
+                mysqlCon.Close();
+            }
+        }
+
+        private void ratingComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedRating = ratingComboBox.SelectedItem.ToString();
+            addRatingTextBox.Text = selectedRating;
+            using (MySqlConnection mysqlCon = new MySqlConnection(connectionString))
+            {
+                mysqlCon.Open();
+                string ratingQuery = "select id from rating where rating.name = '" + selectedRating + "'";
+                MySqlCommand mscRating = new MySqlCommand(ratingQuery, mysqlCon);
+                MySqlDataReader myReaderRating;
+                myReaderRating = mscRating.ExecuteReader();
+                myReaderRating.Read();
+                int rating_id = myReaderRating.GetInt32("id");
+                ratingID = rating_id;
             }
         }
     }

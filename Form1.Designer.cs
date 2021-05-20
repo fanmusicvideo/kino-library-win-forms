@@ -178,6 +178,7 @@ namespace kino_library
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(100, 23);
             this.countryComboBox.TabIndex = 69;
+            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.countryComboBox_SelectedIndexChanged);
             // 
             // countryLabel
             // 
@@ -195,6 +196,7 @@ namespace kino_library
             this.ratingComboBox.Name = "ratingComboBox";
             this.ratingComboBox.Size = new System.Drawing.Size(100, 23);
             this.ratingComboBox.TabIndex = 67;
+            this.ratingComboBox.SelectedIndexChanged += new System.EventHandler(this.ratingComboBox_SelectedIndexChanged);
             // 
             // ratingLabel
             // 
@@ -212,6 +214,7 @@ namespace kino_library
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(100, 23);
             this.categoryComboBox.TabIndex = 65;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
             // 
             // categoryLabel
             // 
@@ -347,6 +350,7 @@ namespace kino_library
             this.addCategoryButton.TabIndex = 81;
             this.addCategoryButton.Text = "+";
             this.addCategoryButton.UseVisualStyleBackColor = false;
+            this.addCategoryButton.Click += new System.EventHandler(this.addCategoryButton_Click);
             // 
             // addCountrybutton
             // 
@@ -358,6 +362,7 @@ namespace kino_library
             this.addCountrybutton.TabIndex = 83;
             this.addCountrybutton.Text = "+";
             this.addCountrybutton.UseVisualStyleBackColor = false;
+            this.addCountrybutton.Click += new System.EventHandler(this.addCountryButton_Click);
             // 
             // addRatingbutton
             // 
@@ -369,6 +374,7 @@ namespace kino_library
             this.addRatingbutton.TabIndex = 88;
             this.addRatingbutton.Text = "+";
             this.addRatingbutton.UseVisualStyleBackColor = false;
+            this.addRatingbutton.Click += new System.EventHandler(this.addRatingButton_Click);
             // 
             // addActorButton
             // 
@@ -438,6 +444,7 @@ namespace kino_library
             this.deleteRatingButton.TabIndex = 95;
             this.deleteRatingButton.Text = "-";
             this.deleteRatingButton.UseVisualStyleBackColor = false;
+            this.deleteRatingButton.Click += new System.EventHandler(this.deleteRatingButton_Click);
             // 
             // deleteCountryButton
             // 
@@ -449,6 +456,7 @@ namespace kino_library
             this.deleteCountryButton.TabIndex = 96;
             this.deleteCountryButton.Text = "-";
             this.deleteCountryButton.UseVisualStyleBackColor = false;
+            this.deleteCountryButton.Click += new System.EventHandler(this.deleteCountryButton_Click);
             // 
             // deleteCategoryButton
             // 
@@ -460,6 +468,7 @@ namespace kino_library
             this.deleteCategoryButton.TabIndex = 97;
             this.deleteCategoryButton.Text = "-";
             this.deleteCategoryButton.UseVisualStyleBackColor = false;
+            this.deleteCategoryButton.Click += new System.EventHandler(this.deleteCategoryButton_Click);
             // 
             // deleteGenreButton
             // 
