@@ -24,3 +24,4 @@ D:\bsuir\2 course\2 semester\bd\bd_kp\kino-library\bin\Debug\netcoreapp3.1\Ubiet
 D:\bsuir\2 course\2 semester\bd\bd_kp\kino-library\bin\Debug\netcoreapp3.1\K4os.Compression.LZ4.dll
 D:\bsuir\2 course\2 semester\bd\bd_kp\kino-library\bin\Debug\netcoreapp3.1\K4os.Hash.xxHash.dll
 D:\bsuir\2 course\2 semester\bd\bd_kp\kino-library\bin\Debug\netcoreapp3.1\MySql.Data.xml
+D:\bsuir\2 course\2 semester\bd\bd_kp\kino-library\obj\Debug\netcoreapp3.1\kino_library.Properties.Resources.resources

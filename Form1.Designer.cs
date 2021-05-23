@@ -82,13 +82,33 @@ namespace kino_library
             this.addCountryTextBox = new System.Windows.Forms.TextBox();
             this.ratingNameLabel = new System.Windows.Forms.Label();
             this.addRatingTextBox = new System.Windows.Forms.TextBox();
+            this.deleteActorFromMovieButton = new System.Windows.Forms.Button();
+            this.DeleteDirectorFromMovieButton = new System.Windows.Forms.Button();
+            this.SqlEditorButton = new System.Windows.Forms.Button();
+            this.DbBackupButton = new System.Windows.Forms.Button();
+            this.DbRecoveryButton = new System.Windows.Forms.Button();
+            this.LoggingButton = new System.Windows.Forms.Button();
+            this.SqlEditorDataGridView = new System.Windows.Forms.DataGridView();
+            this.MakeQueryButton = new System.Windows.Forms.Button();
+            this.ClearSqlEditorButton = new System.Windows.Forms.Button();
+            this.SqlEditorTextBox = new System.Windows.Forms.TextBox();
+            this.SqlEditorPanel = new System.Windows.Forms.Panel();
+            this.DataGridSqlEditorPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.posterPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SqlEditorDataGridView)).BeginInit();
+            this.SqlEditorPanel.SuspendLayout();
+            this.DataGridSqlEditorPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // addGenreButton
             // 
-            this.addGenreButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addGenreButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addGenreButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addGenreButton.FlatAppearance.BorderSize = 0;
+            this.addGenreButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Aqua;
+            this.addGenreButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addGenreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addGenreButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addGenreButton.Location = new System.Drawing.Point(12, 445);
             this.addGenreButton.Name = "addGenreButton";
@@ -100,7 +120,12 @@ namespace kino_library
             // 
             // changePosterButton
             // 
-            this.changePosterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.changePosterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.changePosterButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.changePosterButton.FlatAppearance.BorderSize = 0;
+            this.changePosterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Fuchsia;
+            this.changePosterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.changePosterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.changePosterButton.Location = new System.Drawing.Point(59, 288);
             this.changePosterButton.Name = "changePosterButton";
             this.changePosterButton.Size = new System.Drawing.Size(111, 36);
@@ -122,10 +147,14 @@ namespace kino_library
             // 
             // viewAllButton
             // 
-            this.viewAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.viewAllButton.Location = new System.Drawing.Point(436, 44);
+            this.viewAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.viewAllButton.FlatAppearance.BorderSize = 0;
+            this.viewAllButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.viewAllButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.viewAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.viewAllButton.Location = new System.Drawing.Point(439, 32);
             this.viewAllButton.Name = "viewAllButton";
-            this.viewAllButton.Size = new System.Drawing.Size(75, 53);
+            this.viewAllButton.Size = new System.Drawing.Size(72, 77);
             this.viewAllButton.TabIndex = 74;
             this.viewAllButton.Text = "View all actors and directors";
             this.viewAllButton.UseVisualStyleBackColor = false;
@@ -296,7 +325,11 @@ namespace kino_library
             // deleteButton
             // 
             this.deleteButton.BackColor = System.Drawing.Color.Red;
-            this.deleteButton.Location = new System.Drawing.Point(607, 458);
+            this.deleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Location = new System.Drawing.Point(610, 458);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(111, 51);
             this.deleteButton.TabIndex = 55;
@@ -307,6 +340,10 @@ namespace kino_library
             // cancelButton
             // 
             this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.cancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Location = new System.Drawing.Point(714, 458);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(111, 51);
@@ -318,7 +355,11 @@ namespace kino_library
             // saveButton
             // 
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.saveButton.Location = new System.Drawing.Point(506, 458);
+            this.saveButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.saveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Location = new System.Drawing.Point(502, 458);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(111, 51);
             this.saveButton.TabIndex = 53;
@@ -330,19 +371,26 @@ namespace kino_library
             // 
             this.moviesDataGridView.AllowUserToAddRows = false;
             this.moviesDataGridView.AllowUserToDeleteRows = false;
-            this.moviesDataGridView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.moviesDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.moviesDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.moviesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.moviesDataGridView.Cursor = System.Windows.Forms.Cursors.Cross;
             this.moviesDataGridView.Location = new System.Drawing.Point(831, 12);
             this.moviesDataGridView.Name = "moviesDataGridView";
             this.moviesDataGridView.ReadOnly = true;
             this.moviesDataGridView.RowTemplate.Height = 25;
-            this.moviesDataGridView.Size = new System.Drawing.Size(537, 497);
+            this.moviesDataGridView.Size = new System.Drawing.Size(436, 497);
             this.moviesDataGridView.TabIndex = 52;
             this.moviesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.moviesDataGridView_CellDoubleClick);
             // 
             // addCategoryButton
             // 
-            this.addCategoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addCategoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addCategoryButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addCategoryButton.FlatAppearance.BorderSize = 0;
+            this.addCategoryButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Aqua;
+            this.addCategoryButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addCategoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCategoryButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addCategoryButton.Location = new System.Drawing.Point(138, 445);
             this.addCategoryButton.Name = "addCategoryButton";
@@ -354,7 +402,12 @@ namespace kino_library
             // 
             // addCountrybutton
             // 
-            this.addCountrybutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addCountrybutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addCountrybutton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addCountrybutton.FlatAppearance.BorderSize = 0;
+            this.addCountrybutton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Aqua;
+            this.addCountrybutton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addCountrybutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addCountrybutton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addCountrybutton.Location = new System.Drawing.Point(263, 445);
             this.addCountrybutton.Name = "addCountrybutton";
@@ -366,7 +419,12 @@ namespace kino_library
             // 
             // addRatingbutton
             // 
-            this.addRatingbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addRatingbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addRatingbutton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addRatingbutton.FlatAppearance.BorderSize = 0;
+            this.addRatingbutton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Aqua;
+            this.addRatingbutton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addRatingbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addRatingbutton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.addRatingbutton.Location = new System.Drawing.Point(387, 445);
             this.addRatingbutton.Name = "addRatingbutton";
@@ -378,9 +436,14 @@ namespace kino_library
             // 
             // addActorButton
             // 
-            this.addActorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addActorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addActorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addActorButton.FlatAppearance.BorderSize = 0;
+            this.addActorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Aqua;
+            this.addActorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addActorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addActorButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addActorButton.Location = new System.Drawing.Point(542, 298);
+            this.addActorButton.Location = new System.Drawing.Point(542, 330);
             this.addActorButton.Name = "addActorButton";
             this.addActorButton.Size = new System.Drawing.Size(100, 29);
             this.addActorButton.TabIndex = 89;
@@ -390,9 +453,14 @@ namespace kino_library
             // 
             // addDirectorButton
             // 
-            this.addDirectorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addDirectorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addDirectorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addDirectorButton.FlatAppearance.BorderSize = 0;
+            this.addDirectorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Aqua;
+            this.addDirectorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addDirectorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addDirectorButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.addDirectorButton.Location = new System.Drawing.Point(691, 298);
+            this.addDirectorButton.Location = new System.Drawing.Point(691, 330);
             this.addDirectorButton.Name = "addDirectorButton";
             this.addDirectorButton.Size = new System.Drawing.Size(100, 29);
             this.addDirectorButton.TabIndex = 90;
@@ -403,7 +471,7 @@ namespace kino_library
             // addActorNameTextBox
             // 
             this.addActorNameTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.addActorNameTextBox.Location = new System.Drawing.Point(517, 141);
+            this.addActorNameTextBox.Location = new System.Drawing.Point(517, 173);
             this.addActorNameTextBox.Name = "addActorNameTextBox";
             this.addActorNameTextBox.Size = new System.Drawing.Size(138, 23);
             this.addActorNameTextBox.TabIndex = 91;
@@ -411,7 +479,7 @@ namespace kino_library
             // addDirectorNamTextBox
             // 
             this.addDirectorNamTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.addDirectorNamTextBox.Location = new System.Drawing.Point(674, 141);
+            this.addDirectorNamTextBox.Location = new System.Drawing.Point(674, 173);
             this.addDirectorNamTextBox.Name = "addDirectorNamTextBox";
             this.addDirectorNamTextBox.Size = new System.Drawing.Size(138, 23);
             this.addDirectorNamTextBox.TabIndex = 92;
@@ -419,7 +487,7 @@ namespace kino_library
             // addActorBioTextBox
             // 
             this.addActorBioTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.addActorBioTextBox.Location = new System.Drawing.Point(517, 189);
+            this.addActorBioTextBox.Location = new System.Drawing.Point(517, 221);
             this.addActorBioTextBox.Multiline = true;
             this.addActorBioTextBox.Name = "addActorBioTextBox";
             this.addActorBioTextBox.Size = new System.Drawing.Size(138, 103);
@@ -428,7 +496,7 @@ namespace kino_library
             // addDirectorBioTextBox
             // 
             this.addDirectorBioTextBox.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.addDirectorBioTextBox.Location = new System.Drawing.Point(674, 189);
+            this.addDirectorBioTextBox.Location = new System.Drawing.Point(674, 221);
             this.addDirectorBioTextBox.Multiline = true;
             this.addDirectorBioTextBox.Name = "addDirectorBioTextBox";
             this.addDirectorBioTextBox.Size = new System.Drawing.Size(138, 103);
@@ -436,7 +504,13 @@ namespace kino_library
             // 
             // deleteRatingButton
             // 
-            this.deleteRatingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.deleteRatingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteRatingButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteRatingButton.FlatAppearance.BorderSize = 0;
+            this.deleteRatingButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.deleteRatingButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.deleteRatingButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteRatingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteRatingButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.deleteRatingButton.Location = new System.Drawing.Point(387, 480);
             this.deleteRatingButton.Name = "deleteRatingButton";
@@ -448,7 +522,13 @@ namespace kino_library
             // 
             // deleteCountryButton
             // 
-            this.deleteCountryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.deleteCountryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteCountryButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteCountryButton.FlatAppearance.BorderSize = 0;
+            this.deleteCountryButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.deleteCountryButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.deleteCountryButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteCountryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteCountryButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.deleteCountryButton.Location = new System.Drawing.Point(263, 480);
             this.deleteCountryButton.Name = "deleteCountryButton";
@@ -460,7 +540,13 @@ namespace kino_library
             // 
             // deleteCategoryButton
             // 
-            this.deleteCategoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.deleteCategoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteCategoryButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteCategoryButton.FlatAppearance.BorderSize = 0;
+            this.deleteCategoryButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.deleteCategoryButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.deleteCategoryButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteCategoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteCategoryButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.deleteCategoryButton.Location = new System.Drawing.Point(138, 480);
             this.deleteCategoryButton.Name = "deleteCategoryButton";
@@ -472,7 +558,13 @@ namespace kino_library
             // 
             // deleteGenreButton
             // 
-            this.deleteGenreButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.deleteGenreButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteGenreButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteGenreButton.FlatAppearance.BorderSize = 0;
+            this.deleteGenreButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.deleteGenreButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.deleteGenreButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteGenreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteGenreButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.deleteGenreButton.Location = new System.Drawing.Point(12, 480);
             this.deleteGenreButton.Name = "deleteGenreButton";
@@ -484,9 +576,15 @@ namespace kino_library
             // 
             // deleteActorButton
             // 
-            this.deleteActorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.deleteActorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteActorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteActorButton.FlatAppearance.BorderSize = 0;
+            this.deleteActorButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.deleteActorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.deleteActorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteActorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteActorButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteActorButton.Location = new System.Drawing.Point(542, 333);
+            this.deleteActorButton.Location = new System.Drawing.Point(542, 365);
             this.deleteActorButton.Name = "deleteActorButton";
             this.deleteActorButton.Size = new System.Drawing.Size(100, 29);
             this.deleteActorButton.TabIndex = 99;
@@ -496,9 +594,15 @@ namespace kino_library
             // 
             // deleteDirectorButton
             // 
-            this.deleteDirectorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.deleteDirectorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteDirectorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteDirectorButton.FlatAppearance.BorderSize = 0;
+            this.deleteDirectorButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.deleteDirectorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.deleteDirectorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteDirectorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteDirectorButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteDirectorButton.Location = new System.Drawing.Point(691, 333);
+            this.deleteDirectorButton.Location = new System.Drawing.Point(691, 365);
             this.deleteDirectorButton.Name = "deleteDirectorButton";
             this.deleteDirectorButton.Size = new System.Drawing.Size(100, 29);
             this.deleteDirectorButton.TabIndex = 100;
@@ -509,7 +613,7 @@ namespace kino_library
             // actorsNameLabel
             // 
             this.actorsNameLabel.AutoSize = true;
-            this.actorsNameLabel.Location = new System.Drawing.Point(517, 123);
+            this.actorsNameLabel.Location = new System.Drawing.Point(517, 155);
             this.actorsNameLabel.Name = "actorsNameLabel";
             this.actorsNameLabel.Size = new System.Drawing.Size(77, 15);
             this.actorsNameLabel.TabIndex = 101;
@@ -518,7 +622,7 @@ namespace kino_library
             // directorsNameLabel
             // 
             this.directorsNameLabel.AutoSize = true;
-            this.directorsNameLabel.Location = new System.Drawing.Point(674, 123);
+            this.directorsNameLabel.Location = new System.Drawing.Point(674, 155);
             this.directorsNameLabel.Name = "directorsNameLabel";
             this.directorsNameLabel.Size = new System.Drawing.Size(90, 15);
             this.directorsNameLabel.TabIndex = 102;
@@ -527,7 +631,7 @@ namespace kino_library
             // actorsBioLabel
             // 
             this.actorsBioLabel.AutoSize = true;
-            this.actorsBioLabel.Location = new System.Drawing.Point(517, 171);
+            this.actorsBioLabel.Location = new System.Drawing.Point(517, 203);
             this.actorsBioLabel.Name = "actorsBioLabel";
             this.actorsBioLabel.Size = new System.Drawing.Size(64, 15);
             this.actorsBioLabel.TabIndex = 103;
@@ -536,7 +640,7 @@ namespace kino_library
             // directorsBioLabel
             // 
             this.directorsBioLabel.AutoSize = true;
-            this.directorsBioLabel.Location = new System.Drawing.Point(674, 171);
+            this.directorsBioLabel.Location = new System.Drawing.Point(674, 203);
             this.directorsBioLabel.Name = "directorsBioLabel";
             this.directorsBioLabel.Size = new System.Drawing.Size(77, 15);
             this.directorsBioLabel.TabIndex = 104;
@@ -610,11 +714,163 @@ namespace kino_library
             this.addRatingTextBox.Size = new System.Drawing.Size(100, 23);
             this.addRatingTextBox.TabIndex = 111;
             // 
+            // deleteActorFromMovieButton
+            // 
+            this.deleteActorFromMovieButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deleteActorFromMovieButton.FlatAppearance.BorderSize = 0;
+            this.deleteActorFromMovieButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.deleteActorFromMovieButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteActorFromMovieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteActorFromMovieButton.Location = new System.Drawing.Point(517, 114);
+            this.deleteActorFromMovieButton.Name = "deleteActorFromMovieButton";
+            this.deleteActorFromMovieButton.Size = new System.Drawing.Size(138, 38);
+            this.deleteActorFromMovieButton.TabIndex = 113;
+            this.deleteActorFromMovieButton.Text = "delete actor from movie";
+            this.deleteActorFromMovieButton.UseVisualStyleBackColor = false;
+            this.deleteActorFromMovieButton.Click += new System.EventHandler(this.deleteActorFromMovieButton_Click);
+            // 
+            // DeleteDirectorFromMovieButton
+            // 
+            this.DeleteDirectorFromMovieButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.DeleteDirectorFromMovieButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DeleteDirectorFromMovieButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.DeleteDirectorFromMovieButton.FlatAppearance.BorderSize = 0;
+            this.DeleteDirectorFromMovieButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.DeleteDirectorFromMovieButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.DeleteDirectorFromMovieButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteDirectorFromMovieButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DeleteDirectorFromMovieButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DeleteDirectorFromMovieButton.Location = new System.Drawing.Point(674, 114);
+            this.DeleteDirectorFromMovieButton.Name = "DeleteDirectorFromMovieButton";
+            this.DeleteDirectorFromMovieButton.Size = new System.Drawing.Size(138, 38);
+            this.DeleteDirectorFromMovieButton.TabIndex = 114;
+            this.DeleteDirectorFromMovieButton.Text = "delete director from movie";
+            this.DeleteDirectorFromMovieButton.UseVisualStyleBackColor = false;
+            this.DeleteDirectorFromMovieButton.Click += new System.EventHandler(this.DeleteDirectorFromMovieButton_Click);
+            // 
+            // SqlEditorButton
+            // 
+            this.SqlEditorButton.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.SqlEditorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SqlEditorButton.FlatAppearance.BorderSize = 0;
+            this.SqlEditorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SqlEditorButton.Location = new System.Drawing.Point(1274, 13);
+            this.SqlEditorButton.Name = "SqlEditorButton";
+            this.SqlEditorButton.Size = new System.Drawing.Size(95, 251);
+            this.SqlEditorButton.TabIndex = 115;
+            this.SqlEditorButton.Text = "SQL editor";
+            this.SqlEditorButton.UseVisualStyleBackColor = false;
+            this.SqlEditorButton.Click += new System.EventHandler(this.SqlEditorButton_Click);
+            // 
+            // DbBackupButton
+            // 
+            this.DbBackupButton.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.DbBackupButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DbBackupButton.FlatAppearance.BorderSize = 0;
+            this.DbBackupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DbBackupButton.Location = new System.Drawing.Point(1274, 270);
+            this.DbBackupButton.Name = "DbBackupButton";
+            this.DbBackupButton.Size = new System.Drawing.Size(95, 75);
+            this.DbBackupButton.TabIndex = 118;
+            this.DbBackupButton.Text = "DB backup";
+            this.DbBackupButton.UseVisualStyleBackColor = false;
+            this.DbBackupButton.Click += new System.EventHandler(this.DbBackupButton_Click);
+            // 
+            // DbRecoveryButton
+            // 
+            this.DbRecoveryButton.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.DbRecoveryButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DbRecoveryButton.FlatAppearance.BorderSize = 0;
+            this.DbRecoveryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DbRecoveryButton.Location = new System.Drawing.Point(1274, 352);
+            this.DbRecoveryButton.Name = "DbRecoveryButton";
+            this.DbRecoveryButton.Size = new System.Drawing.Size(95, 75);
+            this.DbRecoveryButton.TabIndex = 119;
+            this.DbRecoveryButton.Text = "DB recovery";
+            this.DbRecoveryButton.UseVisualStyleBackColor = false;
+            this.DbRecoveryButton.Click += new System.EventHandler(this.DbRecoveryButton_Click);
+            // 
+            // LoggingButton
+            // 
+            this.LoggingButton.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.LoggingButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LoggingButton.FlatAppearance.BorderSize = 0;
+            this.LoggingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LoggingButton.Location = new System.Drawing.Point(1274, 433);
+            this.LoggingButton.Name = "LoggingButton";
+            this.LoggingButton.Size = new System.Drawing.Size(95, 75);
+            this.LoggingButton.TabIndex = 120;
+            this.LoggingButton.Text = "Logging";
+            this.LoggingButton.UseVisualStyleBackColor = false;
+            // 
+            // SqlEditorDataGridView
+            // 
+            this.SqlEditorDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SqlEditorDataGridView.Location = new System.Drawing.Point(14, 13);
+            this.SqlEditorDataGridView.Name = "SqlEditorDataGridView";
+            this.SqlEditorDataGridView.RowTemplate.Height = 25;
+            this.SqlEditorDataGridView.Size = new System.Drawing.Size(783, 466);
+            this.SqlEditorDataGridView.TabIndex = 0;
+            // 
+            // MakeQueryButton
+            // 
+            this.MakeQueryButton.Location = new System.Drawing.Point(113, 433);
+            this.MakeQueryButton.Name = "MakeQueryButton";
+            this.MakeQueryButton.Size = new System.Drawing.Size(105, 51);
+            this.MakeQueryButton.TabIndex = 2;
+            this.MakeQueryButton.Text = "Make query";
+            this.MakeQueryButton.UseVisualStyleBackColor = true;
+            this.MakeQueryButton.Click += new System.EventHandler(this.MakeQueryButton_Click);
+            // 
+            // ClearSqlEditorButton
+            // 
+            this.ClearSqlEditorButton.Location = new System.Drawing.Point(224, 433);
+            this.ClearSqlEditorButton.Name = "ClearSqlEditorButton";
+            this.ClearSqlEditorButton.Size = new System.Drawing.Size(105, 51);
+            this.ClearSqlEditorButton.TabIndex = 1;
+            this.ClearSqlEditorButton.Text = "Clear editor";
+            this.ClearSqlEditorButton.UseVisualStyleBackColor = true;
+            this.ClearSqlEditorButton.Click += new System.EventHandler(this.ClearSqlEditorButton_Click);
+            // 
+            // SqlEditorTextBox
+            // 
+            this.SqlEditorTextBox.Location = new System.Drawing.Point(14, 18);
+            this.SqlEditorTextBox.Multiline = true;
+            this.SqlEditorTextBox.Name = "SqlEditorTextBox";
+            this.SqlEditorTextBox.Size = new System.Drawing.Size(409, 409);
+            this.SqlEditorTextBox.TabIndex = 0;
+            // 
+            // SqlEditorPanel
+            // 
+            this.SqlEditorPanel.Controls.Add(this.MakeQueryButton);
+            this.SqlEditorPanel.Controls.Add(this.ClearSqlEditorButton);
+            this.SqlEditorPanel.Controls.Add(this.SqlEditorTextBox);
+            this.SqlEditorPanel.Location = new System.Drawing.Point(831, 13);
+            this.SqlEditorPanel.Name = "SqlEditorPanel";
+            this.SqlEditorPanel.Size = new System.Drawing.Size(436, 497);
+            this.SqlEditorPanel.TabIndex = 121;
+            // 
+            // DataGridSqlEditorPanel
+            // 
+            this.DataGridSqlEditorPanel.Controls.Add(this.SqlEditorDataGridView);
+            this.DataGridSqlEditorPanel.Location = new System.Drawing.Point(12, 13);
+            this.DataGridSqlEditorPanel.Name = "DataGridSqlEditorPanel";
+            this.DataGridSqlEditorPanel.Size = new System.Drawing.Size(813, 497);
+            this.DataGridSqlEditorPanel.TabIndex = 122;
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(1381, 522);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(1381, 530);
+            this.Controls.Add(this.SqlEditorPanel);
+            this.Controls.Add(this.DataGridSqlEditorPanel);
+            this.Controls.Add(this.LoggingButton);
+            this.Controls.Add(this.DbRecoveryButton);
+            this.Controls.Add(this.DbBackupButton);
+            this.Controls.Add(this.SqlEditorButton);
+            this.Controls.Add(this.DeleteDirectorFromMovieButton);
+            this.Controls.Add(this.deleteActorFromMovieButton);
             this.Controls.Add(this.ratingNameLabel);
             this.Controls.Add(this.addRatingTextBox);
             this.Controls.Add(this.countryNameLabel);
@@ -668,14 +924,20 @@ namespace kino_library
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.moviesDataGridView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "kino-library";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
             ((System.ComponentModel.ISupportInitialize)(this.posterPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SqlEditorDataGridView)).EndInit();
+            this.SqlEditorPanel.ResumeLayout(false);
+            this.SqlEditorPanel.PerformLayout();
+            this.DataGridSqlEditorPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -729,7 +991,7 @@ namespace kino_library
         private System.Windows.Forms.Label actorsBioLabel;
         private System.Windows.Forms.Label directorsBioLabel;
         private System.Windows.Forms.Label genreNamelabel;
-        private System.Windows.Forms.TextBox genreTextBox;
+        // private System.Windows.Forms.TextBox genreTextBox;
         private System.Windows.Forms.TextBox addGenreTextBox;
         private System.Windows.Forms.Label categoryNameLabel;
         private System.Windows.Forms.TextBox addCategoryTextBox;
@@ -737,6 +999,18 @@ namespace kino_library
         private System.Windows.Forms.TextBox addCountryTextBox;
         private System.Windows.Forms.Label ratingNameLabel;
         private System.Windows.Forms.TextBox addRatingTextBox;
+        private System.Windows.Forms.Button deleteActorFromMovieButton;
+        private System.Windows.Forms.Button DeleteDirectorFromMovieButton;
+        private System.Windows.Forms.Button SqlEditorButton;
+        private System.Windows.Forms.Button DbBackupButton;
+        private System.Windows.Forms.Button DbRecoveryButton;
+        private System.Windows.Forms.Button LoggingButton;
+        private System.Windows.Forms.DataGridView SqlEditorDataGridView;
+        private System.Windows.Forms.Button MakeQueryButton;
+        private System.Windows.Forms.Button ClearSqlEditorButton;
+        private System.Windows.Forms.TextBox SqlEditorTextBox;
+        private System.Windows.Forms.Panel SqlEditorPanel;
+        private System.Windows.Forms.Panel DataGridSqlEditorPanel;
     }
 }
 
